@@ -1,34 +1,15 @@
-"use strict";
+import db from "./db";
+import routes from "./routes";
+import server from "./server";
 
-import Hapi from "@hapi/hapi";
-import { Server } from "@hapi/hapi";
+// prepare database
+db.init();
 
-export let server: Server;
+// start server with routes
+server.init(routes);
 
-export const init = async function (): Promise<Server> {
-  server = Hapi.server({
-    port: process.env.PORT || 4000,
-    host: "0.0.0.0",
-  });
-
-  server.route({
-    method: "GET",
-    path: "/",
-    handler: (request, h) => "Hello World!",
-  });
-
-  return server;
-};
-
-export const start = async function (): Promise<void> {
-  console.log(`Listening on ${server.settings.host}:${server.settings.port}`);
-  return server.start();
-};
-
+// handle uncaught errors
 process.on("unhandledRejection", (err) => {
-  console.error("unhandledRejection");
   console.error(err);
   process.exit(1);
 });
-
-init().then(() => start());
