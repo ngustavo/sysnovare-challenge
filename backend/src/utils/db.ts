@@ -1,4 +1,4 @@
-// JSON File Database
+// JSON File Key-Value Database
 
 import fsPromises from "fs/promises";
 
@@ -30,7 +30,7 @@ const teardown = async () => {
   }
 };
 
-// insert a new item into the database or edit an existing item
+// set, get or remove an item with a given key
 const setItem = async (key: string, value: any) => {
   try {
     const file = await fsPromises.readFile(filePath, "utf-8");
@@ -43,7 +43,6 @@ const setItem = async (key: string, value: any) => {
   }
 };
 
-// get an item from the database
 const getItem = async (key: string) => {
   try {
     const file = await fsPromises.readFile(filePath, "utf-8");
@@ -54,7 +53,6 @@ const getItem = async (key: string) => {
   }
 };
 
-// remove an item from the database
 const removeItem = async (key: string) => {
   try {
     const file = await fsPromises.readFile(filePath, "utf-8");

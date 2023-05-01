@@ -4,12 +4,16 @@
   "private": true,
   "scripts": {
     "dev:tsc": "tsc --watch -p .",
-    "dev:serve": "nodemon -e js -w dist dist/index.js",
+    "dev:serve": "nodemon -w dist/src dist/src/index.js",
     "dev": "run-p dev:*",
     "test": "jest ./__tests__"
   },
   "dependencies": {
-    "@hapi/hapi": "^21.3.2"
+    "@hapi/hapi": "^21.3.2",
+    "@types/jsonwebtoken": "^9.0.2",
+    "hapi-auth-jwt2": "^10.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",

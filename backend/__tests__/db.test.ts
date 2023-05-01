@@ -1,4 +1,4 @@
-import db from "../src/db";
+import db from "../src/utils/db";
 
 describe("Database", () => {
   beforeAll(async () => {
