@@ -1,3 +1,13 @@
-<app-home></app-home>
-
+<mat-toolbar color="primary">
+  <span>HomeBank</span>
+  <span class="app-spacer"></span>
+  <button
+    mat-button
+    aria-label="Example icon-button with share icon"
+    [routerLink]="['/']"
+  >
+    <mat-icon>logout</mat-icon>
+    Sair
+  </button>
+</mat-toolbar>
 <router-outlet></router-outlet>

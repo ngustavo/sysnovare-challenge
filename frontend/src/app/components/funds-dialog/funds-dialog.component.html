@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>
+  <span [hidden]="!data.isAdd">Adicionar Fundos</span>
+  <span [hidden]="data.isAdd">Remover Fundos</span>
+</h1>
+<div mat-dialog-content>
+  <div class="spacer"></div>
+  <mat-form-field appearance="outline">
+    <mat-label>Quantia</mat-label>
+    <input matInput type="number" placeholder="100.01" [(ngModel)]="amount" />
+    <mat-icon matSuffix>attach_money</mat-icon>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <div class="btn">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="addFunds()"
+      [hidden]="!data.isAdd"
+    >
+      Adicionar
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="removeFunds()"
+      [hidden]="data.isAdd"
+    >
+      Remover
+    </button>
+  </div>
+</div>
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>

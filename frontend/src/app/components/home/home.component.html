@@ -1,0 +1,89 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-subtitle>Bem-vindo(a) de volta</mat-card-subtitle>
+    <mat-card-title>Aceda à sua conta</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="spacer"></div>
+    <p [hidden]="isLogin">
+      <mat-form-field class="field" appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          placeholder="José da Silva"
+          [(ngModel)]="name"
+          name="name"
+        />
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="field" appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          matInput
+          placeholder="email@example.com"
+          [(ngModel)]="email"
+          name="email"
+        />
+        <mat-icon matSuffix>alternate_email</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="field" appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="********"
+          [(ngModel)]="password"
+          name="password"
+        />
+        <mat-icon matSuffix>password</mat-icon>
+      </mat-form-field>
+    </p>
+    <div style="display: flex">
+      <div class="btn">
+        <a
+          mat-button
+          target="_blank"
+          (click)="isLogin = !isLogin"
+          [hidden]="!isLogin"
+        >
+          Não tens conta? Regista-te
+        </a>
+        <a
+          mat-button
+          target="_blank"
+          (click)="isLogin = !isLogin"
+          [hidden]="isLogin"
+        >
+          Aceda à tua conta existente
+        </a>
+      </div>
+    </div>
+    <p class="error">{{ error }}</p>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions class="btn">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="subscribe()"
+      [hidden]="isLogin"
+    >
+      Registar
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="login()"
+      [hidden]="!isLogin"
+    >
+      Entrar
+    </button>
+  </mat-card-actions>
+  <mat-card-footer [hidden]="!isLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
