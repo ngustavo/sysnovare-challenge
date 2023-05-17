@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { UserService } from "../services/user.service";
 import { Router } from "@angular/router";
 
@@ -16,6 +16,7 @@ type LoginResponse = {
   styleUrls: ["./home.component.sass"],
 })
 export class HomeComponent {
+  @Output() onLogin = new EventEmitter<LoginResponse>();
   isLogin = true;
   isLoading = false;
   error: string | undefined;
@@ -34,7 +35,8 @@ export class HomeComponent {
           this.error = data.error?.message;
           return;
         }
-        this._router.navigate(["account"]);
+        this.onLogin.emit(data);
+        this._router.navigate(["account"], { queryParams: data });
       },
       error: (err) => {
         this.isLoading = false;
@@ -49,7 +51,8 @@ export class HomeComponent {
       next: (data: { token?: string }) => {
         this.isLoading = false;
         if (!data.token) return;
-        this._router.navigate(["account"]);
+        this.onLogin.emit(data);
+        this._router.navigate(["account"], { queryParams: { data } });
       },
       error: (err) => {
         this.isLoading = false;

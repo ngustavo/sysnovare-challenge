@@ -12,11 +12,15 @@ export class AccountComponent {
   constructor(public dialog: MatDialog) {}
 
   openDialog(isAdd: boolean) {
-    this.dialog.open(FundsDialogComponent, {
+    const dialogRef = this.dialog.open(FundsDialogComponent, {
       data: {
         isAdd,
         email: "email@example.com",
       },
+    });
+
+    dialogRef.afterClosed().subscribe((res: any) => {
+      console.log("account", res);
     });
   }
 }

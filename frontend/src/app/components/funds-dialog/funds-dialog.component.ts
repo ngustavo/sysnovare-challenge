@@ -21,8 +21,9 @@ export class FundsDialogComponent {
 
   addFunds(): void {
     this.userService.addFunds(this.data.email, this.amount).subscribe({
-      next: () => {
-        this.dialogRef.close();
+      next: (res: any) => {
+        console.log("dialog", res);
+        this.dialogRef.close({ res });
       },
       error: (error) => {
         console.log("dialog error", error);
@@ -32,8 +33,8 @@ export class FundsDialogComponent {
 
   removeFunds(): void {
     this.userService.removeFunds(this.data.email, this.amount).subscribe({
-      next: () => {
-        this.dialogRef.close();
+      next: (res: any) => {
+        this.dialogRef.close({ res });
       },
       error: () => {
         console.log("dialog error");
